@@ -449,8 +449,7 @@ trajectory_output_directory = Path("VMD_3D_files")
 interacting_trajectory_output_directory = (
     trajectory_output_directory / "interacting_8nm"
 )
-# Figures are always saved. Set this to True only when interactive windows are
-# wanted; False lets the complete analysis run without pausing at every plot.
+
 show_figures = False
 thermostat_plot_order = ("langevin", "berendsen")
 thermostat_styles = {
@@ -1470,8 +1469,7 @@ def export_interacting_full_trajectories():
             zlim=(lower_limit - padding, upper_limit + padding),
             title=thermostat_name.capitalize(),
         )
-        # Set the three labels separately so that label padding can be added.
-        # This keeps the text clear of the tick labels and inside the canvas.
+        
         axis.set_xlabel("displacement x [nm]", labelpad=12)
         axis.set_ylabel("displacement y [nm]", labelpad=12)
         axis.set_zlabel("displacement z [nm]", labelpad=12)
@@ -1484,9 +1482,7 @@ def export_interacting_full_trajectories():
     add_figure_legend(
         figure, figure.axes, ncol=4, apply_tight_layout=False
     )
-    # tight_layout/bbox_inches='tight' can cut off labels on 3D axes because
-    # Matplotlib does not always report their full rotated bounding boxes.
-    # Fixed canvas margins are therefore safer for this particular figure.
+    
     figure.subplots_adjust(
         left=0.03, right=0.84, bottom=0.20, top=0.84, wspace=0.12
     )
